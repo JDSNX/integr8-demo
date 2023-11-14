@@ -19,8 +19,7 @@ def extract_json(URL: str = settings.MOCK_API_ENDPOINT) -> list[Post]:
 
 
 def transform_json(obj_in: list[Post]) -> list[PostUpdate]:
-    _updated_obj = [{**data, "summary": data["body"][:50]} for data in obj_in]
-    return [PostUpdate(**obj) for obj in _updated_obj]
+    return [PostUpdate({**data, "summary": data["body"][:50]}) for data in obj_in]
 
 
 def store_json(
